@@ -84,7 +84,7 @@ class Request(models.Model):
             request.META.get('X_FORWARDED_FOR', None),
         ]
         self.ip = next((item for item in ip_addr if item is not None), None)
-        if self.ip is None or is_valid_ip(self.ip) is False:
+        if self.ip is None or self.is_valid_ip(self.ip) is False:
             self.ip = request_settings.IP_DUMMY
             
         self.referer = request.META.get("HTTP_REFERER", "")[:255]
