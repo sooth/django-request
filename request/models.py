@@ -62,7 +62,7 @@ class Request(models.Model):
     def get_user(self):
         return get_user_model().objects.get(pk=self.user_id)
 
-    def is_valid_ip(ip):
+    def is_valid_ip(self, ip):
         m = re.match(r"^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$", ip)
         return bool(m) and all(map(lambda n: 0 <= int(n) <= 255, m.groups()))
 
